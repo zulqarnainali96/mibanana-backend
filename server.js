@@ -16,11 +16,12 @@ const chatModel = require('./models/chat/chat-model')
 // const OauthClient = require("./google_api/config"
 // const fs = require("fs")/
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT 
+// const PORT = process.env.PORT || 5000
 
 //App Config
 ConnectDB()
-app.use('/', express.static(path.join(__dirname, '/build')))
+app.use('/', express.static(path.join(__dirname, 'build')))
 app.use(cors(corsOptions))
 app.use(logger)
 app.use(cookieParser())
@@ -43,7 +44,7 @@ app.all('*', (req, res) => {
 const server = createServer(app)
 const io = new Server({
     cors: {
-        origin: [process.env.NODE_ENV_FRONT_URL],
+        origin: [process.env.NODE_ENV_SOCKET_PORT],
         credentials: true,
     }
 })
