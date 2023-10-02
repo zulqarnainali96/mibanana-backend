@@ -41,13 +41,13 @@ app.all('*', (req, res) => {
 })
 
 // Sockets Connection
-const server = createServer(app)
-const io = new Server({
-    cors: {
-        origin: [process.env.NODE_ENV_SOCKET_PORT],
-        credentials: true,
-    }
-})
+// const server = createServer(app)
+// const io = new Server({
+//     cors: {
+//         origin: [process.env.NODE_ENV_SOCKET_PORT],
+//         credentials: true,
+//     }
+// })
 
 // const chatRooms = new Map();
 
@@ -105,31 +105,31 @@ const io = new Server({
 // Server 
 
 
-io.on("connection", (socket) => {
-    console.log("User Connected ", socket.id)
-    socket.on("project_id", (id) => {
-        getPersonMessages(id, l = 10)
-            .then(results => {
-                const limit = results?.chat_msg.slice(-l)
-                // const obj = {
-                //     ...results,
-                //     chat_msg : limit
-                // }
-                socket.emit('found', limit)
-            }).catch(e => {
-                // console.log('ERROR => ', e)
-                const obj = {
-                    chat_msg: []
-                }
-                socket.emit('found', obj)
-            })
-    })
-    socket.emit('current', socket.id)
-    socket.on("room-message", (message, room) => {
-        socket.join(room)
-        socket.to(room).emit("message", message)
-    })
-})
+// io.on("connection", (socket) => {
+//     console.log("User Connected ", socket.id)
+//     socket.on("project_id", (id) => {
+//         getPersonMessages(id, l = 10)
+//             .then(results => {
+//                 const limit = results?.chat_msg.slice(-l)
+//                 // const obj = {
+//                 //     ...results,
+//                 //     chat_msg : limit
+//                 // }
+//                 socket.emit('found', limit)
+//             }).catch(e => {
+//                 // console.log('ERROR => ', e)
+//                 const obj = {
+//                     chat_msg: []
+//                 }
+//                 socket.emit('found', obj)
+//             })
+//     })
+//     socket.emit('current', socket.id)
+//     socket.on("room-message", (message, room) => {
+//         socket.join(room)
+//         socket.to(room).emit("message", message)
+//     })
+// })
 
 async function getPersonMessages(id) {
     return await chatModel
@@ -138,7 +138,7 @@ async function getPersonMessages(id) {
 }
 
 
-io.listen(process.env.SOCKET_PORT)
+// io.listen(process.env.SOCKET_PORT)
 
 app.use(errorHandler)
 
