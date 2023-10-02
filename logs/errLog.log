@@ -222,3 +222,10 @@
 2023,10,02,	:05:55:27	6d679cdb-7b08-4f79-948c-5e4c00ec682a	ValidationError : company_details validation failed: user: Path `user` is required.	POST	/settings/company-profile	http://localhost:3000
 2023,10,02,	:09:43:18	f1fff637-52c8-4dc1-bf17-b006a68002af	MongoServerSelectionError : getaddrinfo ENOTFOUND ac-nbfdaib-shard-00-01.qtlcdaf.mongodb.net	GET	/graphic-project/64fe366943475b69f1b73bf5	http://localhost:3000
 2023,10,02,	:09:43:36	008c3c02-234e-4548-8143-d476e54d7e9e	MongoServerSelectionError : getaddrinfo ENOTFOUND ac-nbfdaib-shard-00-01.qtlcdaf.mongodb.net	GET	/graphic-project/64fe366943475b69f1b73bf5	http://localhost:3000
+2023,10,02,	:14:15:59	fad7421f-e2d1-43fb-bf0a-98a695bfe362	Error : origin note allowed by Cors Error	POST	/authentication/mi-sign-in	http://localhost:4005
+2023,10,02,	:14:17:10	fdda2f0f-7547-48b4-82eb-6f1f023a9982	Error : origin note allowed by Cors Error	POST	/authentication/mi-sign-in	http://localhost:4005
+2023,10,02,	:15:17:41	a2056c50-7f6c-41ac-bc70-eb65391061b0	Error : origin note allowed by Cors Error	OPTIONS	/authentication/mi-sign-in	http://192.168.209.1:3000
+2023,10,02,	:15:17:47	8dbdafe4-a796-45eb-b1b2-983e5a67ead0	Error : origin note allowed by Cors Error	OPTIONS	/authentication/mi-sign-in	http://192.168.209.1:3000
+2023,10,02,	:15:18:06	ede90461-83e4-42d6-9289-6f789ebb2a40	Error : origin note allowed by Cors Error	OPTIONS	/authentication/mi-sign-in	http://192.168.209.1:3000
+2023,10,02,	:15:18:39	6d722472-d5e6-4d72-a245-3df8c970273f	Error : origin note allowed by Cors Error	OPTIONS	/authentication/mi-sign-in	http://192.168.209.1:3000
+2023,10,02,	:15:18:47	70f916b0-d531-4b22-84eb-1901ba1e9802	Error : origin note allowed by Cors Error	OPTIONS	/authentication/mi-sign-in	http://192.168.209.1:3000

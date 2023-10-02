@@ -43,18 +43,10 @@ app.all('*', (req, res) => {
 const server = createServer(app)
 const io = new Server({
     cors: {
-        origin: ['http://localhost:3000'],
+        origin: ['http://localhost:4005'],
         credentials: true,
     }
 })
-
-
-
-
-
-
-
-
 
 // const chatRooms = new Map();
 
@@ -124,7 +116,7 @@ io.on("connection", (socket) => {
                 // }
                 socket.emit('found', limit)
             }).catch(e => {
-                console.log('ERROR => ', e)
+                // console.log('ERROR => ', e)
                 const obj = {
                     chat_msg: []
                 }
