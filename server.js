@@ -43,7 +43,7 @@ app.all('*', (req, res) => {
 const server = createServer(app)
 const io = new Server({
     cors: {
-        origin: ['http://localhost:4005'],
+        origin: [process.env.NODE_ENV_FRONT_URL],
         credentials: true,
     }
 })
