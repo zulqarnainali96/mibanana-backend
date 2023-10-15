@@ -13,8 +13,6 @@ const path = require('path')
 const { Server } = require("socket.io")
 const { createServer } = require("node:http")
 const chatModel = require('./models/chat/chat-model')
-// const OauthClient = require("./google_api/config"
-// const fs = require("fs")/
 
 const PORT = process.env.PORT 
 // const PORT = process.env.PORT || 5000
@@ -30,24 +28,25 @@ app.use('/', require('./routes/routes'))
 app.use('/authentication/mi-sign-in', require('./routes/loginRoutes'))
 app.use('/authentication/mi-sign-up', require('./routes/userRoutes'))
 app.all('*', (req, res) => {
-    res.status(404)
+    // res.status(404)
     if (req.accepts('html')) {
-        res.sendFile(path.join(__dirname, 'views', '404.html'))
-    } else if (req.accepts('json')) {
-        res.json({ message: '404 not found' })
-    } else {
-        res.type('txt').send('404 not found')
-    }
+        res.sendFile(path.join(__dirname,'build','index.html'))
+    } 
+    // else if (req.accepts('json')) {
+    //     res.json({ message: '404 not found' })
+    // } else {
+    //     res.type('txt').send('404 not found')
+    // }
 })
 
 // Sockets Connection
 // const server = createServer(app)
-// const io = new Server({
-//     cors: {
-//         origin: [process.env.NODE_ENV_SOCKET_PORT],
-//         credentials: true,
-//     }
-// })
+const io = new Server({
+    cors: {
+        origin: [process.env.FRONT_BASE_URL],
+        credentials: true,
+    }
+});
 
 // const chatRooms = new Map();
 
@@ -105,31 +104,32 @@ app.all('*', (req, res) => {
 // Server 
 
 
-// io.on("connection", (socket) => {
-//     console.log("User Connected ", socket.id)
-//     socket.on("project_id", (id) => {
-//         getPersonMessages(id, l = 10)
-//             .then(results => {
-//                 const limit = results?.chat_msg.slice(-l)
-//                 // const obj = {
-//                 //     ...results,
-//                 //     chat_msg : limit
-//                 // }
-//                 socket.emit('found', limit)
-//             }).catch(e => {
-//                 // console.log('ERROR => ', e)
-//                 const obj = {
-//                     chat_msg: []
-//                 }
-//                 socket.emit('found', obj)
-//             })
-//     })
-//     socket.emit('current', socket.id)
-//     socket.on("room-message", (message, room) => {
-//         socket.join(room)
-//         socket.to(room).emit("message", message)
-//     })
-// })
+io.on("connection", (socket) => {
+    console.log("User Connected ", socket.id)
+    // socket.on("project_id", (id) => {
+    //     getPersonMessages(id)
+    //         .then(results => {
+    //             // console.log(results) 
+    //             const limit = results?.chat_msg.slice(-l)
+    //             const obj = {
+    //                 ...results,
+    //                 chat_msg : limit
+    //             }
+    //             socket.emit('found', results)
+    //         }).catch(e => {
+    //             // console.log('ERROR => ', e)
+    //             const obj = {
+    //                 chat_msg: []
+    //             }
+    //             socket.emit('found', obj)
+    //         })
+    // })
+    // socket.emit('current', socket.id)
+    socket.on("room-message", (message, room) => {
+        socket.join(room)
+        socket.to(room).emit("message", message)
+    })
+})
 
 async function getPersonMessages(id) {
     return await chatModel
@@ -139,6 +139,7 @@ async function getPersonMessages(id) {
 
 
 // io.listen(process.env.SOCKET_PORT)
+io.listen(4006)
 
 app.use(errorHandler)
 

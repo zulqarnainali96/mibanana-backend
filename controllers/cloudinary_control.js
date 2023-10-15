@@ -20,7 +20,7 @@ const fileUploader = asyncHandler(async (req, res) => {
     // }).end(req.file.buffer);
 
     const checkField = await profileModal.findOne({ user }).exec()
-    if (checkField === null ) {
+    if (checkField === null) {
         const creatingProfile = await profileModal.create({ email, user, phone, fullName, avatar })
         if (typeof creatingProfile !== null) {
             return res.status(200).send({ message: 'profile created', profile: creatingProfile })
@@ -37,6 +37,27 @@ const fileUploader = asyncHandler(async (req, res) => {
         return res.status(200).send({ message: 'Profile Data saved', profile: data })
     }
     return res.status(500).send('Server error')
+})
+
+const updateCustomerProfile = asyncHandler(async (req, res) => {
+    const { user, fullName, email, phone } = req.body
+    if (!user) {
+        return res.status(400).json({ message: "Invalid UserID Please Login again" })
+    }
+    if (user) {
+        const person = await profileModal.findOne({ user }).exec()
+        if (person !== null) {
+            person.email = email
+            person.fullName = fullName
+            person.phone = phone
+            const profile = await person.save()
+            return res.status(201).json({ message: 'Profile Updated', profile: { email: profile.email, phone: profile.phone, fullName : profile.fullName} })
+        } else {
+            return res.status(400).json({ message: 'Profile Not Updated' })
+        }
+    }
+    res.status(400).send({message : 'Not found'})
+
 })
 
 const getProfileData = asyncHandler(async (req, res) => {
@@ -56,4 +77,4 @@ const getProfileData = asyncHandler(async (req, res) => {
 })
 
 
-module.exports = { getProfileData, fileUploader };
+module.exports = { getProfileData, fileUploader, updateCustomerProfile };

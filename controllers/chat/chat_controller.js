@@ -10,7 +10,7 @@ const createChatController = asyncHandler(async (req, res) => {
     }
     const Chat = await chatModel.findOne({ project_id }).exec()
     if (Chat === null) {
-        console.log('chat ' ,Chat)
+        // console.log('chat ' ,Chat)
         await chatModel.create({ project_id, chat_msg: chat_message })
         return res.status(200).json({ message : 'Chat Created'})
     }
@@ -20,7 +20,7 @@ const createChatController = asyncHandler(async (req, res) => {
         Chat.chat_msg = [chat_message]
     }
     const saving =  await Chat.save()
-    console.log('saving ' ,saving)
+    // console.log('saving ' ,saving)
     if(saving !== null){
         return res.status(200).send({ message: "Chat saved" })
     }

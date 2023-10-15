@@ -32,7 +32,7 @@ const projectModel = mongoose.Schema({
     },
     describe_audience: {
         type: String,
-        required: true
+        required: false
     },
     sizes: {
         type: String,
@@ -40,15 +40,16 @@ const projectModel = mongoose.Schema({
     },
     resources: {                    // Content of Project
         type: String,
-        required: true
+        required: false
     },
     reference_example: [{
         type: String,
         required: false
     }],
     add_files: [{
-        type: String,
-        required: false
+        type: Object,
+        required: false,
+        default : [],
     }],
     specific_software_names: {
         type: String,

@@ -52,7 +52,7 @@ async function deleteFile() {
         const response = await drive.files.delete({
             fileId: '1zQAgASGNWy2v82H5-HybA8YgPIO8pLij',// file id
         });
-        console.log(response.data, response.status);
+        // console.log(response.data, response.status);
     } catch (error) {
         console.log(error.message);
     }

@@ -18,7 +18,7 @@ const uploadFilesToDrive = async (file) => {
                 body: file.buffer
             }
         })
-        console.log("Upload File => ", res.data.id)
+        // console.log("Upload File => ", res.data.id)
         return res.data.id
     } catch (error) {
         console.error('Error uploading file:', error.message);

@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "mi-banana-401205",
+  "private_key_id": "79865bf40fad6b6b850b842fb012b23a02368574",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCuLLSPcpgJsBSI\nFqTzFP2epHofTKa0EWtB6JYojDJqfBVtNXlKQvfrSA7Dv//clrYgrZbcTSC1sEPJ\nsZIS7EF7a/TUHp70aACgJvg/Vb4VlOJy72vi+tFFIMTSe0Xt/by+CiKakL7JGw7O\nNXYaoXNHoRDuV9lU/KaEnzsgdtVyxAOtYiJKDqvLuNjafdkd2VkpGb7w5bKuY2aN\nF7+/dR7rgykThgtSS2KS3hBy6lbL3qrfa4OComRhK86JyLn0T7IUEFY9d06+rQxD\nJeVatmI59T7G6Z6yGi6ZsPNOg6rpqJybMLgKHdgVM9iuYyGA1HhumpROsYNtNW+d\ngMgxiP/hAgMBAAECggEAALRjUsxVqH4xjZ3BeP1gKMACO76jO6bOkiRfJ4JiyDFp\ngDvVMaZPEoyPfUbKzW2dBo9F87579FjyElo6sRpzrNJg8SRiY8nrvl0IiuRTUdxl\nSq4zMdruXkMXLR6ipNXi6XSjIdZ+taUebIiCBJV45rHIzUA6u7j38dsjPVOcSy7J\n2DSBieWye5G+bnfxpl53vqqKEmVB4pFNuDhpH7lxl3jIj5LGso5RLrX2zY96u8zE\nVVftsxaX79fK603ohb5hwW7XJf3i0RkorHlertlGfBYJbBxQiZicmnOFDsFCGAov\nwCl17FbepwY9abhhBPzKafX79Veje9JfMBlBaWKGdwKBgQDbicwq1ek0cSBvoy1P\nJXjoMyRX1+PbkecgDTAdTyt0Aucv5utOQYFx12gcWojO7Nj8VNqvNhV3iyGcZsyR\nk0XKNn6exMdbsnZTkoP8rIQbS7YFYz3cXyfgk/EyawtRofh8Ldha5cFvN+Dp/SBh\n/5jKfbCzJQaclQ/FHsFTf/JyNwKBgQDLGimXNmMoRff0caFxOOkWSkHCAlmnLcVV\n1l7ah3B3gmHr7TYxRKaOQ5eaO3tytfE7n4LJkviwugl1wzZB6CzXaSD6H8fKPzEE\nRM0H7+/yfeqOQizHdRRB2Tce8GtfRLI3WfZHepTyEtcCN6C+n9S5osJezoGB8I6M\nrft8JpxypwKBgBOoJuu+836KkojsZ2YqyMShr6Nd5T0Ht1YbWC+HozBkAic72d3L\n57c1vlCrmoxMkLEnN91wTkPB5WSHn9F5CkqsznGQ1PjU5dtdxwuctsdq5AVfeW59\n5qgpFvOYug65HfKgeDrLT6KRskXBMGEV7axTzLp9mjXy8tKHim/biO3JAoGAcx0z\n/4GS9+uYWxLgdwTTj4+s76JXYBrgIwOqpV9ojkP27jp3obsQT8fdsEwQbvbScIG7\nJjbH/5qh6/4lzXsjlz/9sea7XVUtmgbI0rvamu1lORYmvTINtjjANif8I3YTMK4r\nmV3P99hXxujykbiTYFfwpL2Ux6opkXC2/ioAODcCgYEAimH4kzmjUON6+kMyqncS\nYwY2yaASMN/WsHrL8XEu+L8LAWgRSlm1S/1tFhQrNZL2o23ZZf3WXioky4ZPWWNN\nQm1nzAR/aK9Zbl+flrNlx+2zHO63eO90HI8GniWWEm68pq6bWjieFSrgYLP3gcXf\nMir/acVsTbZDgOEl/7kVGFw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "mi-banana-storage@mi-banana-401205.iam.gserviceaccount.com",
+  "client_id": "111939934866409390418",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mi-banana-storage%40mi-banana-401205.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

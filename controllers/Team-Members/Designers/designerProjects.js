@@ -58,7 +58,7 @@ const getDesignerList = asyncHandler(async (req, res) => {
     if (!id) return res.status(400).send("Please provide ID")
     if (id) {
         const isManager = await User.find({ _id: id }).exec()
-        console.log(isManager)
+        // console.log(isManager)
         if (isManager[0] !== null && isManager[0].roles.includes("Project-Manager")) {
             const designerList = await User.find().select('-password').lean().exec()
             const filterDesigner = designerList.filter(item => {
