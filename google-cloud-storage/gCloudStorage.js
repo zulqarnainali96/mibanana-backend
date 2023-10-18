@@ -14,7 +14,6 @@ const fs = require('fs')
 const createFolder = async () => {
     const path = 'zain-12345610/brand/img.png'
     const [files] = await bucket.getFiles({ prefix: path })
-    // if (files.length) console.log(files)
 
     const blob = bucket.file(path)
     await blob.save('1.png', {
@@ -24,9 +23,6 @@ const createFolder = async () => {
     })
     return { path }
 }
-// let files = fs.readFileSync(join(__dirname,'1.jpg'))
-// let filePath = path.join(__dirname, 'aa.png')
-// let file = 'aa.png'
 let generationMatchPreCondition = 0
 
 const uploadFile = async (req, res) => {
@@ -76,8 +72,6 @@ const getFiles = async (req, res) => {
                 obj.upated_time = file.metadata.updated
             return obj
         })
-        // console.log('project files => ',files)
-        // console.log('project files => ',filesInfo)
         const findProject = await graphicProjectsModel.findById({ _id: project_id }).exec()
 
         if (findProject) {

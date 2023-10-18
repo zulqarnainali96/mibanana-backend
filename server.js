@@ -14,12 +14,12 @@ const { Server } = require("socket.io")
 const { createServer } = require("node:http")
 const chatModel = require('./models/chat/chat-model')
 
-const PORT = process.env.PORT 
+const PORT = process.env.PORT
 // const PORT = process.env.PORT || 5000
 
 //App Config
 ConnectDB()
-app.use('/', express.static(path.join(__dirname, 'build')))
+app.use(express.static(path.join(__dirname, 'build')))
 app.use(cors(corsOptions))
 app.use(logger)
 app.use(cookieParser())
@@ -27,23 +27,20 @@ app.use(express.json())
 app.use('/', require('./routes/routes'))
 app.use('/authentication/mi-sign-in', require('./routes/loginRoutes'))
 app.use('/authentication/mi-sign-up', require('./routes/userRoutes'))
-app.all('*', (req, res) => {
-    // res.status(404)
-    if (req.accepts('html')) {
-        res.sendFile(path.join(__dirname,'build','index.html'))
-    } 
-    // else if (req.accepts('json')) {
-    //     res.json({ message: '404 not found' })
-    // } else {
-    //     res.type('txt').send('404 not found')
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'),
+        (err) => {
+            res.status(500).send(err)
+        }
+    )
     // }
 })
-
 // Sockets Connection
 // const server = createServer(app)
 const io = new Server({
     cors: {
-        origin: [process.env.FRONT_BASE_URL],
+        // origin: ['http://localhost:4005'],
+        origin: [process.env.FRONT_BASE_URL, 'http://localhost:4005'],
         credentials: true,
     }
 });
@@ -149,9 +146,7 @@ mongoose.connection.once('open', () => {
         console.log(`Server started on Port : ${PORT}`)
     })
 })
-// server.listen(PORT, () => {
-//     console.log(`Server started on Port : ${PORT}`)
-// })
+
 mongoose.connection.on('error', error => {
     console.log(error)
     logEvents(error.no + ' : ' + error.code + '\t' + error.syscall + '\t' + error.hostname, 'mongoErrorLog.log')

@@ -19,7 +19,7 @@ const createUsers = asyncHandler(async (req, res) => {
     }
     const hashPassword = await bcrypt.hash(password, 10) // Salt Rounds
     const created_at = new Date().toDateString() + " " + new Date().toLocaleTimeString()
-    const userObject = { email, 'password': hashPassword, name, created_at, is_active: true, roles }
+    const userObject = { email, 'password': hashPassword, name, created_at, is_active: true, roles, avatar : '', phone_no : '' }
     const user = await User.create(userObject)
 
     if (user) {
@@ -66,9 +66,10 @@ const LoginUser = async (req, res) => {
             }
             return res.status(400).send({ message: "An Email sent to your account please verify" });
         }
-        const { name, email, _id, is_active, created_at, roles, verified } = user
+        const { name, email, _id, is_active, created_at, roles, verified, phone_no, avatar } = user
+        console.log(user.avatar)
         // const token = user.generateAuthToken();
-        res.status(200).json({ userDetails: { name, email, id: _id, is_active, created_at, roles, verified }, message: "logged in successfully" });
+        res.status(200).json({ userDetails: { name, email, id: _id, is_active, created_at, roles, verified, phone_no , avatar }, message: "logged in successfully" });
 
     } catch (error) {
         res.status(500).send({ message: "Internal Server Error" });

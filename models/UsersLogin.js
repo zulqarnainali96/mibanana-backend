@@ -27,6 +27,14 @@ const UserSchema = mongoose.Schema({
         type : Boolean,
         default : false
     },
+    phone_no : {
+        type : String,
+        required : false
+    },
+    avatar : {
+        type : String,
+        required : false
+    },
     created_at : {
         type : String,
         required : false

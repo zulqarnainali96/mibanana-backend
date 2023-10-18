@@ -6,23 +6,21 @@ const { postCompanyDetails,
     updateProfile,
     getCompanyDetails,
 } = require("../controllers/profileSetting")
-const { upload } = require("../google_api/config")
 const multer = require('multer')
 const uploadFiles = multer({
     storage: multer.memoryStorage()
 })
 
 
-const { graphicCategory } = require("../controllers/Projects/Graphic_design/category")
 const { createGraphicProject, getAssignGraphicProject, getDesignerList } = require('../controllers/Team-Members/Designers/designerProjects')
 const { createChatController, getProjectChat } = require('../controllers/chat/chat_controller')
 const { fileUploader, getProfileData, updateCustomerProfile } = require('../controllers/cloudinary_control')
-const uploadProjectFiles = require('../controllers/Upload Files/uploadFileController')
-const { getBrandList, createBrand, deleteBrandList } = require('../controllers/Brand/brandController')
+const { getBrandList, createBrand, deleteBrandList, updateBrandList } = require('../controllers/Brand/brandController')
 const changePassword = require('../controllers/forgetPassControll')
 const verifyToken = require('../controllers/verifyEmail/verify-email-control')
 const { downloadFile, getFiles, uploadFile } = require('../google-cloud-storage/gCloudStorage')
 const { designerUpload, getDesignerFiles, deleteDesigners } = require('../controllers/Projects/Graphic_design/designer_upload')
+const { UploadProfileImage, UploadWithoutProfileImage } = require('../controllers/profile-image/profileImage')
 
 // Route for Company profile Data
 router.post("/settings/company-profile", postCompanyDetails)
@@ -63,13 +61,14 @@ router.get('/api/settings-profile/:id', getProfileData)
 
 
 // Google Drive Route not tested 
-router.post("/api/upload-project-files", upload.array('files', 5), uploadProjectFiles)
+// router.post("/api/upload-project-files", upload.array('files', 5), uploadProjectFiles)
 
 
 // Route for creating and getting brand 
 router.post("/api/brand", uploadFiles.array('files', 7), createBrand)
 router.get("/api/brand/:id", getBrandList)
 router.delete("/api/brand/:id", deleteBrandList)
+router.patch("/api/brand", updateBrandList)
 
 // Route for changing password 
 router.put("/api/settings/forget-password", changePassword)
@@ -88,6 +87,13 @@ router.get('/get-files/download/:name', downloadFile)
 
 router.post('/api/designer-uploads/:id', uploadFiles.array('files', 5), designerUpload)
 router.get('/api/designer-uploads/:id', getDesignerFiles)
+
+
+// Router For user profile image for Google Cloud
+
+router.post('/api/user/profile/:id', uploadFiles.single('file', 1), UploadProfileImage)
+
+router.post('/api/user/no-profile/:id',UploadWithoutProfileImage)
 
 
 module.exports = router 

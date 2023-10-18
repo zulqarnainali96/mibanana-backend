@@ -45,7 +45,11 @@ const brandModel = mongoose.Schema({
         type: String,
         required: false,
 
-    }
+    },
+    files : [{
+        type : Object,
+        required : false
+    }]
 })
 
 module.exports = mongoose.model('brand_model',brandModel)

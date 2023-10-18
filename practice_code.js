@@ -117,3 +117,17 @@
 // console.log(f)
 
 // console.log('d',d)
+
+const arr = ['zain','ali','fasseh']
+
+const ccc = [
+    { id : 1, name : 'zain'},
+    { id : 1, name : 'ali'},
+    { id : 1, name : 'fasseh'},
+    { id : 1, name : 'rashid'},
+    { id : 1, name : 'mmm'},
+]
+
+const res = ccc.filter(item=> !arr.some(item2 => item.name === item2))
+
+console.log(res)
