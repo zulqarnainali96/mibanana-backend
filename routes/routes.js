@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const parser = require("../storage_service/cloudinary")
-const { createGraphicDesign, getGraphicProject, upadteProject, deleteGraphicProject, getCustomerFiles } = require('../controllers/graphicDesign')
+const { createGraphicDesign, getGraphicProject, upadteProject, deleteGraphicProject, getCustomerFiles, duplicateProject, projectCompleted } = require('../controllers/graphicDesign')
 const { postCompanyDetails,
     updateProfile,
     getCompanyDetails,
@@ -32,6 +32,8 @@ router.patch("/settings/company-profile", updateProfile)
 router.get("/get-customer-files/:id", getCustomerFiles)
 router.get("/graphic-project/:id", getGraphicProject)
 router.delete("/graphic-project/:id", deleteGraphicProject)
+router.post("/duplicate-project/:id", duplicateProject)
+router.patch("/api/project-completed/:id", projectCompleted)
 router.route("/graphic-project")
     .post(createGraphicDesign)
     .patch(upadteProject)

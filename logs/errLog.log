@@ -460,3 +460,4 @@
 2023,10,18,	:18:49:53	acc85492-48b7-4d8c-9f9d-87d55e36c9c1	MongoServerSelectionError : getaddrinfo ENOTFOUND ac-nbfdaib-shard-00-00.qtlcdaf.mongodb.net	GET	/graphic-project/652d669292bbe6a5342e2929	http://localhost:3000
 2023,10,18,	:18:50:13	4ff62f0e-7e94-4bad-b66d-f70cd8f8c290	MongoServerSelectionError : getaddrinfo ENOTFOUND ac-nbfdaib-shard-00-00.qtlcdaf.mongodb.net	GET	/graphic-project/652d669292bbe6a5342e2929	http://localhost:3000
 2023,10,18,	:18:50:31	da767baa-245c-4ea4-8702-ee23c8929aac	MongoServerSelectionError : getaddrinfo ENOTFOUND ac-nbfdaib-shard-00-00.qtlcdaf.mongodb.net	GET	/graphic-project/652d669292bbe6a5342e2929	http://localhost:3000
+2023,10,19,	:11:27:47	a4618d37-6d34-406c-8170-07dd1cac071a	ValidationError : graphicDesign validation failed: sizes: Path `sizes` is required.	POST	/graphic-project	http://localhost:3000

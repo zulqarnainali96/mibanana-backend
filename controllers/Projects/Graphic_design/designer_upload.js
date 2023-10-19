@@ -50,6 +50,7 @@ const getDesignerFiles = async (req, res) => {
         return res.status(400).send({ message: 'ID not found' })
     }
 
+    
     try {
         const currentProject = await Projects.findById(_id)
         if (currentProject) {

@@ -73,10 +73,6 @@ const projectModel = mongoose.Schema({
         type: Object,
         required: false
     }],
-    status: {
-        type: String,
-        required: false
-    }
     ////// END
 },
     {

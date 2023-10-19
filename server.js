@@ -10,13 +10,13 @@ const { logEvents } = require('./middleware/logs')
 const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
 const path = require('path')
-const { Server } = require("socket.io")
+// const { Server } = require("socket.io")
+// const { Server } = require("socket.io")
 const { createServer } = require("node:http")
 const chatModel = require('./models/chat/chat-model')
 
 const PORT = process.env.PORT
 // const PORT = process.env.PORT || 5000
-
 //App Config
 ConnectDB()
 app.use(express.static(path.join(__dirname, 'build')))
@@ -36,14 +36,18 @@ app.get('*', (req, res) => {
     // }
 })
 // Sockets Connection
-// const server = createServer(app)
-const io = new Server({
-    cors: {
-        // origin: ['http://localhost:4005'],
-        origin: [process.env.FRONT_BASE_URL, 'http://localhost:4005'],
-        credentials: true,
-    }
-});
+// const server = (app, {
+//     origin: [process.env.NODE_ENV_FRONT_BASE_URL, 'http://localhost:4005'],
+//     credentials: true,
+// })
+
+// const httpServer = createServer
+// const io = new Server({
+//     cors: {
+//         origin: [process.env.NODE_ENV_FRONT_BASE_URL],
+//         credentials: true,
+//     }
+// });
 
 // const chatRooms = new Map();
 
@@ -93,40 +97,36 @@ const io = new Server({
 // });
 
 
-// server.listen(PORT,() => {
-//     console.log("Socket server connected!")
-// })
-
 
 // Server 
 
 
-io.on("connection", (socket) => {
-    console.log("User Connected ", socket.id)
-    // socket.on("project_id", (id) => {
-    //     getPersonMessages(id)
-    //         .then(results => {
-    //             // console.log(results) 
-    //             const limit = results?.chat_msg.slice(-l)
-    //             const obj = {
-    //                 ...results,
-    //                 chat_msg : limit
-    //             }
-    //             socket.emit('found', results)
-    //         }).catch(e => {
-    //             // console.log('ERROR => ', e)
-    //             const obj = {
-    //                 chat_msg: []
-    //             }
-    //             socket.emit('found', obj)
-    //         })
-    // })
-    // socket.emit('current', socket.id)
-    socket.on("room-message", (message, room) => {
-        socket.join(room)
-        socket.to(room).emit("message", message)
-    })
-})
+// io.on("connection", (socket) => {
+//     console.log("User Connected ", socket.id)
+//     // socket.on("project_id", (id) => {
+//     //     getPersonMessages(id)
+//     //         .then(results => {
+//     //             // console.log(results) 
+//     //             const limit = results?.chat_msg.slice(-l)
+//     //             const obj = {
+//     //                 ...results,
+//     //                 chat_msg : limit
+//     //             }
+//     //             socket.emit('found', results)
+//     //         }).catch(e => {
+//     //             // console.log('ERROR => ', e)
+//     //             const obj = {
+//     //                 chat_msg: []
+//     //             }
+//     //             socket.emit('found', obj)
+//     //         })
+//     // })
+//     // socket.emit('current', socket.id)
+//     socket.on("room-message", (message, room) => {
+//         socket.join(room)
+//         socket.to(room).emit("message", message)
+//     })
+// })
 
 async function getPersonMessages(id) {
     return await chatModel
@@ -135,8 +135,8 @@ async function getPersonMessages(id) {
 }
 
 
-// io.listen(process.env.SOCKET_PORT)
-io.listen(4006)
+// io.listen(process.env.PORT)
+// io.listen(4006)
 
 app.use(errorHandler)
 

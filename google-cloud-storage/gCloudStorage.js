@@ -28,6 +28,7 @@ let generationMatchPreCondition = 0
 const uploadFile = async (req, res) => {
     let { user_id, name, project_id, project_title } = req.body
     project_title = project_title?.replace(/\s/g, '')
+    name = name?.replace(/\s/g, '')
     const prefix = `${name}-${user_id}/${project_title}-${project_id}/`
     console.log('Uploading files...')
     await Promise.all(req.files.map(file => {
@@ -41,6 +42,7 @@ const uploadFile = async (req, res) => {
         const blob = bucket.file(prefix + file.originalname)
         blob.createWriteStream(options).on('error', (err) => console.log('err=> ', err))
             .on('finish', async () => {
+                console.log('files uploaded')
                 // await bucket.file(file.originalname).makePublic()
             }).end(file.buffer)
     }))

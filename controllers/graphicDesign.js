@@ -18,7 +18,6 @@ const createGraphicDesign = asyncHandler(async (req, res) => {
         sizes, // requried
         is_active,
         specific_software_names,
-
         // add_files,
         // describe_audience, // requried
         // reference_example,
@@ -206,15 +205,16 @@ const getCustomerFiles = async (req, res) => {
     if (!_id) {
         return res.status(400).send({ message: 'ID not found' })
     }
-
     try {
         const currentProject = await Projects.findById(_id)
         if (currentProject) {
             let { user, name, project_title } = currentProject
-            project_title = project_title.replace(/\s/g, '')
-            name = name.replace(/\s/g, '')
-            const prefix = `${name}-${user}/${project_title}-${_id}/`
+            let project_titl = project_title.replace(/\s/g, '')
+            let names = name.replace(/\s/g, '')
+            const prefix = `${names}-${user}/${project_titl}-${_id}/`
+            console.log(prefix)
             const [files] = await bucket.getFiles({ prefix })
+            console.log(files)
             let filesInfo = files?.map((file) => {
                 let obj = {}
                 obj.id = uniqID(),
@@ -242,7 +242,64 @@ const getCustomerFiles = async (req, res) => {
 }
 
 
-module.exports = { createGraphicDesign, getGraphicProject, upadteProject, deleteGraphicProject, getCustomerFiles }
+const duplicateProject = async (req, res) => {
+    const id = req.params.id
+    const { user, files, } = req.body
+
+    if (!id) {
+        return res.status(400).send({ message: 'ID not found' })
+    }
+    try {
+        const findproject = graphicDesignModel.findById(id)
+        if (findproject) {
+            const { project_category, project_title, design_type, brand, project_description, sizes, specific_software_names } = findproject
+
+            const creatingNewProject = await graphicDesignModel.create({
+                user, project_category, project_title, design_type, brand, project_description,
+                sizes, specific_software_names, is_active: false, status: 'Approval', team_members: []
+            })
+            if (creatingNewProject) {
+                return res.status(201).send({ message: 'Graphic Project Created', project: creatingNewProject })
+            } else {
+                return res.status(400).send({ message: 'Found error while creating project' })
+
+            }
+        } else {
+            return res.status(404).send({ messsage: 'Project Not Found' })
+        }
+
+    } catch (err) {
+        res.status(500).send({ message: "Internal Server Error" })
+    }
+}
+
+const projectCompleted = async () => {
+    const id = req.params.id
+    if (!id) {
+        return res.status(400).send({ message: 'ID not found' })
+    }
+    try {
+        const findproject = graphicDesignModel.findById(id)
+        if (findproject) {
+
+            const updatingStatus = await graphicDesignModel.findByIdAndUpdate(id, { status: 'Completed' })
+            if (updatingStatus) {
+                return res.status(201).send({ message: 'Project Completed' })
+            } else {
+                return res.status(400).send({ message: 'Found error while Updating Project' })
+
+            }
+        } else {
+            return res.status(404).send({ messsage: 'Project Not Found' })
+        }
+
+    } catch (err) {
+        res.status(500).send({ message: "Internal Server Error" })
+    }
+
+}
+
+module.exports = { createGraphicDesign, getGraphicProject, upadteProject, deleteGraphicProject, getCustomerFiles, duplicateProject, projectCompleted }
 
 
 // [
